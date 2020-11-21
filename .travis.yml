@@ -5,22 +5,22 @@ services:
 before_install:
   - docker build -t dockerimage -f Dockerfile.dev .
 
-# script that can be runned by travis on our container
+# script that can be run by travis on our container
 
 script:
   - docker run -e CI=true dockerimage npm run test -- --coverage
 
 deploy:
-  provider: "elastickbeanstalk"
-  region: "us-east-1"
-  app: "react-docker" 
-  environment:" ReactDocker-env"
-  bucket_name: "elasticbeanstalk-us-east-1-203521082749"
-  bucket_path: "react-docker"
+  provider: 'elastickbeanstalk'
+  region: 'us-east-1'
+  app: 'react-docker'
+  environment: 'ReactDocker-env'
+  bucket_name: 'elasticbeanstalk-us-east-1-203521082749'
+  bucket_path: 'react-docker'
 
-# makes sure the deployments only happens on master branch
+  # makes sure the deployments only happens on master branch
   on:
     branch: master
-  
+
   access_key_id: $AWS_ACCESS_KEY
   secret_access_key: $AWS_SECRET_KEY
