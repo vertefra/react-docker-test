@@ -15,6 +15,8 @@ RUN npm run build
 
 FROM nginx
 
+EXPOSE 80
+
 # copy the content of build from the builder phase to a default nginx folder for serving static html
 COPY --from=builder /app/build /usr/share/nginx/html 
 
